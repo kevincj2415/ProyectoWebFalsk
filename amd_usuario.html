@@ -1,0 +1,59 @@
+{% include 'sitio/head.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-header">Formulario de registro</h5>
+                    <div class="card-body">
+                      <form action="/sitio/guardarUsuario" method="post">
+                        <div class="mb-3">
+                          <label for="" class="form-label">id</label>
+                          <input type="number" class="form-control" name="id" placeholder="id del usuario" readonly>
+                        </div>
+                        <div class="mb-3">
+                          <label for="" class="form-label">Username</label>
+                          <input type="text" class="form-control" name="username" placeholder="Nombre del usuario" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="" class="form-label">Password</label>
+                          <input type="password" class="form-control" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                      </form>
+                    </div>
+                </div>
+            </div>
+            <!--==========!-->
+            <div class="col-md-8">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Password</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for usuario in usuarios %}
+                      <tr>
+                        <th scope="row">{{ usuario['ID'] }}</th>
+                        <td>{{ usuario['Username'] }}</td>
+                        <td>{{ usuario['Password'] }}</td>
+                        <td>
+                          <a href= "/sitio/editarUsuario/{{ usuario['ID'] }}" class="btn btn-success">Editar </a>
+                          <a href= "/sitio/borrarUsuario/{{ usuario['ID'] }}" class="btn btn-success">Borrar </a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+
+            </div>
+        </div>
+        
+    </div>
+    
+
+{% include 'sitio/footer.html' %}
